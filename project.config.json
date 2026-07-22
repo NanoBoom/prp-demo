@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "prp-demo",
   "description": "最简 React 微信小程序模板（基于 Taro）",
-  "appid": "touristappid",
+  "appid": "wx771302d2d6a60bb0",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -13,13 +13,29 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.32.3",
   "srcMiniprogramRoot": "dist/",
   "packOptions": {
-    "ignore": []
+    "ignore": [],
+    "include": []
   },
-  "condition": {}
+  "condition": {},
+  "simulatorPluginLibVersion": {},
+  "editorSetting": {}
 }
