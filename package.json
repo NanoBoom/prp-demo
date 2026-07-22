@@ -1,0 +1,33 @@
+{
+  "name": "prp-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "最简 React 微信小程序模板（基于 Taro）",
+  "browserslist": [
+    "defaults and fully supports es6-module"
+  ],
+  "scripts": {
+    "dev": "taro build --type weapp --watch",
+    "build": "taro build --type weapp"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.24.0",
+    "@tarojs/components": "3.6.34",
+    "@tarojs/helper": "3.6.34",
+    "@tarojs/plugin-framework-react": "3.6.34",
+    "@tarojs/plugin-platform-weapp": "3.6.34",
+    "@tarojs/react": "3.6.34",
+    "@tarojs/runtime": "3.6.34",
+    "@tarojs/shared": "3.6.34",
+    "@tarojs/taro": "3.6.34",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@tarojs/cli": "3.6.34",
+    "@tarojs/webpack5-runner": "3.6.34",
+    "babel-preset-taro": "3.6.34",
+    "webpack": "^5.78.0"
+  }
+}
