@@ -1,0 +1,13 @@
+diff --git a/node_modules/@tarojs/webpack5-prebundle/dist/utils/index.js b/node_modules/@tarojs/webpack5-prebundle/dist/utils/index.js
+index 129fe06..3e9960f 100644
+--- a/node_modules/@tarojs/webpack5-prebundle/dist/utils/index.js
++++ b/node_modules/@tarojs/webpack5-prebundle/dist/utils/index.js
+@@ -40,7 +40,7 @@ function createResolve(appPath, resolveOptions) {
+         cache: true,
+         mainFiles: ['index'],
+         exportsFields: ['exports'],
+-        roots: appPath
++        roots: [appPath]
+     };
+     const resolver = enhanced_resolve_1.default.create(Object.assign(Object.assign({}, defaultResolveOptions), resolveOptions));
+     resolve = function (importer, request) {

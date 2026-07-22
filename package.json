@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "dev": "taro build --type weapp --watch",
-    "build": "taro build --type weapp"
+    "build": "taro build --type weapp",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@babel/runtime": "^7.24.0",
@@ -28,6 +29,11 @@
     "@tarojs/cli": "3.6.34",
     "@tarojs/webpack5-runner": "3.6.34",
     "babel-preset-taro": "3.6.34",
-    "webpack": "^5.78.0"
+    "patch-package": "^8.0.1",
+    "webpack": "5.105.4"
+  },
+  "overrides": {
+    "webpack": "5.105.4",
+    "webpackbar": "^7.0.0"
   }
 }
