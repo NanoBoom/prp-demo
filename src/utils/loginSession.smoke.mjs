@@ -1,63 +1,26 @@
 /**
  * Node smoke for loginSession storage contract (no WeChat runtime).
- * Mirrors Sync API semantics: missing key → ''; structured object store.
- * Run: node src/utils/loginSession.smoke.js
+ * Imports real core logic via createLoginSessionApi + Map storage adapter.
+ * Run: node src/utils/loginSession.smoke.mjs
  */
+import { createLoginSessionApi, LOGIN_SESSION_KEY } from './loginSession.core.js'
 
 const storage = new Map()
-
-function setStorageSync(key, data) {
-  storage.set(key, data)
-}
 
 function getStorageSync(key) {
   return storage.has(key) ? storage.get(key) : ''
 }
 
-function removeStorageSync(key) {
-  storage.delete(key)
-}
-
-const LOGIN_SESSION_KEY = 'loginSession'
-const DEFAULT_SESSION = { isLoggedIn: false, loginAt: 0 }
-
-function getLoginSession() {
-  try {
-    const value = getStorageSync(LOGIN_SESSION_KEY)
-    if (value && typeof value === 'object' && value.isLoggedIn === true) {
-      return {
-        isLoggedIn: true,
-        loginAt: typeof value.loginAt === 'number' ? value.loginAt : 0
-      }
+const { getLoginSession, setLoggedIn, clearLoginSession, isLoggedIn } =
+  createLoginSessionApi({
+    setStorageSync(key, data) {
+      storage.set(key, data)
+    },
+    getStorageSync,
+    removeStorageSync(key) {
+      storage.delete(key)
     }
-  } catch (e) {
-    console.log('getLoginSession failed', e)
-  }
-  return { ...DEFAULT_SESSION }
-}
-
-function setLoggedIn() {
-  try {
-    setStorageSync(LOGIN_SESSION_KEY, {
-      isLoggedIn: true,
-      loginAt: Date.now()
-    })
-  } catch (e) {
-    console.log('setLoginSession failed', e)
-  }
-}
-
-function clearLoginSession() {
-  try {
-    removeStorageSync(LOGIN_SESSION_KEY)
-  } catch (e) {
-    console.log('clearLoginSession failed', e)
-  }
-}
-
-function isLoggedIn() {
-  return getLoginSession().isLoggedIn === true
-}
+  })
 
 function assert(cond, msg) {
   if (!cond) throw new Error(msg)

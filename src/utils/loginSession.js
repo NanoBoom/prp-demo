@@ -5,45 +5,16 @@
  * 供 Phase 2 一键登录与 Phase 3 启动恢复/退出复用。
  */
 import { setStorageSync, getStorageSync, removeStorageSync } from '@tarojs/taro'
+import { createLoginSessionApi, LOGIN_SESSION_KEY } from './loginSession.core'
 
-export const LOGIN_SESSION_KEY = 'loginSession'
+const api = createLoginSessionApi({
+  setStorageSync,
+  getStorageSync,
+  removeStorageSync
+})
 
-const DEFAULT_SESSION = { isLoggedIn: false, loginAt: 0 }
-
-export function getLoginSession() {
-  try {
-    const value = getStorageSync(LOGIN_SESSION_KEY)
-    if (value && typeof value === 'object' && value.isLoggedIn === true) {
-      return {
-        isLoggedIn: true,
-        loginAt: typeof value.loginAt === 'number' ? value.loginAt : 0
-      }
-    }
-  } catch (e) {
-    console.log('getLoginSession failed', e)
-  }
-  return { ...DEFAULT_SESSION }
-}
-
-export function setLoggedIn() {
-  try {
-    setStorageSync(LOGIN_SESSION_KEY, {
-      isLoggedIn: true,
-      loginAt: Date.now()
-    })
-  } catch (e) {
-    console.log('setLoginSession failed', e)
-  }
-}
-
-export function clearLoginSession() {
-  try {
-    removeStorageSync(LOGIN_SESSION_KEY)
-  } catch (e) {
-    console.log('clearLoginSession failed', e)
-  }
-}
-
-export function isLoggedIn() {
-  return getLoginSession().isLoggedIn === true
-}
+export { LOGIN_SESSION_KEY }
+export const getLoginSession = api.getLoginSession
+export const setLoggedIn = api.setLoggedIn
+export const clearLoginSession = api.clearLoginSession
+export const isLoggedIn = api.isLoggedIn

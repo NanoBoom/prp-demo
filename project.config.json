@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "prp-demo",
   "description": "最简 React 微信小程序模板（基于 Taro）",
-  "appid": "wx771302d2d6a60bb0",
+  "appid": "touristappid",
   "setting": {
     "urlCheck": true,
     "es6": false,
